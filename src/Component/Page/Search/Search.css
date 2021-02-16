@@ -1,0 +1,27 @@
+
+.search {
+    width: 58.1%;
+}
+
+.search_title {
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+}
+.search_inner_suffix {
+    cursor: pointer;
+}
+.request_field {
+    margin-bottom: 10px;
+}
+.request_field_label {
+    margin-right: 10px;
+}
+.request_btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.request_btns_item {
+    margin-left: 20px;
+}

@@ -1,0 +1,39 @@
+.login {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 510px;
+    height: 520px;
+    padding: 50px 88px 60px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.login_title {
+    display: block;
+    width: 333px;
+    max-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #000;
+}
+
+.login_img {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.login_form {
+    max-width: 300px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .ant-col-rtl .login-form-forgot {
+    float: left;
+  }
+  .login_form_button {
+    width: 100%;
+  }
