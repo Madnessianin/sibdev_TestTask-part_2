@@ -6,13 +6,10 @@ import './video.css'
 const VideoList = (props) => {
     const [videoId, setVideoId] = useState(null)
 
-    const styles = []
-
     const videos = props.videos.map(video => <VideoItem key = {video.id.videoId}
                                                         snippet = {video.snippet}
                                                         videoId = {video.id.videoId}
                                                         onClick = {()=>{setVideoId(video.id.videoId)}} />)
-    
     
     return (
     <div className="video">

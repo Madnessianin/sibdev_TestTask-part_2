@@ -35,7 +35,6 @@ const MySearch = (props) => {
         setIsModalVisible(false)
     }
 
-    console.log(props.result)
     return (
         <div className="search">
             <h1 className="search_title">Поиск видео</h1>

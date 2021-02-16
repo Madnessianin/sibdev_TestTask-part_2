@@ -6,14 +6,13 @@ import { getTextRequest, getTotalCount, getResult, getIsFetching } from '../../.
 
 class SearchConteiner extends React.Component {
 
-
-        render() {
-            return <MySearch result={this.props.result}
-                             isResult={this.props.isResult}
-                             getSearchVideo={this.props.getSearchVideo}
-                             totalCount={this.props.totalCount}
-                             isFetching={this.props.isFetching} />
-        }
+    render() {
+        return <MySearch result={this.props.result}
+                            isResult={this.props.isResult}
+                            getSearchVideo={this.props.getSearchVideo}
+                            totalCount={this.props.totalCount}
+                            isFetching={this.props.isFetching} />
+    }
 
 }
 
