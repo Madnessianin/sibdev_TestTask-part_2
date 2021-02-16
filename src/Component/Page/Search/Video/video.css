@@ -64,6 +64,10 @@
     display: flex;
     flex-wrap: nowrap;
 }
+.video_request_count {
+    margin-left: 20px;
+    opacity: .4;
+} 
 .video_request_icon {
     margin-left: 10px;
     font-size: 20px;

@@ -3,12 +3,17 @@
 import { YouTubeAPI } from '../Api/api'
 import dataUsers from './../JSON/dataUsers.json'
 
-const SET_SEARCH_VIDEO = 'Search_video/auth/SET_AUTH/SET_SEARCH_VIDEO'
-
+const SET_SEARCH_VIDEO = 'Search_video/auth/SET_AUTH/SET_SEARCH_VIDEO',
+      SET_LOGIN_NAME = 'Search_video/auth/SET_AUTH/SET_LOGIN_NAME',
+      SET_TOGGLE_IS_FETCHING = 'Search_video/auth/SET_TOGGLE_IS_FETCHING'
 
 const initialState = {
-    resultsRequest: [],
-    request: null 
+    userName: null,
+    favoritesRequest: [],
+    resultRequest: [],
+    request: null,
+    count: null ,
+    isFetching: false
 }
 
 
@@ -19,8 +24,21 @@ const userReducer = (state = initialState, action) => {
         case SET_SEARCH_VIDEO: {
             return {
                 ...state,
-                resultsRequest: action.result,
-                request: action.request
+                resultRequest: action.result,
+                request: action.request,
+                count: action.totalCount
+            }
+        }
+        case SET_LOGIN_NAME: {
+            return {
+                ...state,
+                userName: action.userName
+            }
+        }
+        case SET_TOGGLE_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         }
 
@@ -30,13 +48,16 @@ const userReducer = (state = initialState, action) => {
     }    
 }
 
-export const setResultSearch = (result, request) =>({type: SET_SEARCH_VIDEO, result, request})
+export const setResultSearch = (result, request, totalCount) =>({type: SET_SEARCH_VIDEO, result, request, totalCount})
+export const setUserName = (userName)=> ({type: SET_LOGIN_NAME, userName})
+export const toggleISFetching = (isFetching) => ({type: SET_TOGGLE_IS_FETCHING, isFetching})
 
 /* Thunk */
-
-export const getResult = (textRequest) => async (dispatch) => {
+export const getSearchVideo = (textRequest) => async (dispatch) => {
+    dispatch(toggleISFetching(true))
     let response = await YouTubeAPI.getVideo(textRequest)
-    dispatch(setResultSearch(response.items, textRequest))
+    dispatch(toggleISFetching(false))
+    dispatch(setResultSearch(response.items, textRequest, response.pageInfo.totalResults))
 }
 
 

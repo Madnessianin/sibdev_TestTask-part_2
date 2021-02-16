@@ -1,4 +1,5 @@
 import dataUsers from './../JSON/dataUsers.json'
+import { setUserName } from './user-reducer'
 
 const SET_AUTH = 'Search_video/auth/SET_AUTH'
 
@@ -38,8 +39,9 @@ export const login = (data) => (dispatch) => {
     dataUsers.users.forEach(user => {
         if (data.login == user.login && data.password == user.pasword) {
             dispatch(setAuth(true))
+            dispatch(setUserName(data.login))
             let token = tokenGenerator()
-            localStorage.setItem('user', token)               
+            localStorage.setItem(`${data.login}`, token)               
         }
     })
 }

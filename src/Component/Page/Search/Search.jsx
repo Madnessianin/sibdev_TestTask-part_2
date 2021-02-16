@@ -6,6 +6,7 @@ import {HeartOutlined, UserOutlined, LockOutlined} from '@ant-design/icons'
 import Modal from 'antd/lib/modal/Modal';
 
 import { Field, reduxForm } from 'redux-form';
+import Preloader from '../../Common/Preloader/Preloader';
 
 const { Search } = Input;
 
@@ -18,7 +19,7 @@ const MySearch = (props) => {
     }, [props.textRequest])
 
     const onSearch = text => {
-        props.getResult(text)
+        props.getSearchVideo(text)
         setTextRequest(text)
     }
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -31,10 +32,10 @@ const MySearch = (props) => {
     );
 
     const onSubmit = (data) => {
-
         setIsModalVisible(false)
     }
 
+    console.log(props.result)
     return (
         <div className="search">
             <h1 className="search_title">Поиск видео</h1>
@@ -45,10 +46,11 @@ const MySearch = (props) => {
                         suffix={suffix}
                         onSearch={onSearch}/>
             </div>
-            {textRequest 
-            ? <VideoList videos={props.result}
-                         textRequest={textRequest} />
-            : <></>}
+            {props.isFetching ? <div className = "preloader"><Preloader /></div> : null}
+            {textRequest ? <VideoList videos={props.result}
+                                      textRequest={textRequest}
+                                      totalCount={props.totalCount} />
+            : null}
             <Modal title="Сохранить запрос" 
                    visible={isModalVisible}
                    centered 

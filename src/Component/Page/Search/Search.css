@@ -25,3 +25,8 @@
 .request_btns_item {
     margin-left: 20px;
 }
+
+.preloader {
+    display: flex;
+    justify-content: center;
+}

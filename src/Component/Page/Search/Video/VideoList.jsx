@@ -3,7 +3,7 @@ import { NavLink, Redirect, Route, Switch } from 'react-router-dom'
 import {AppstoreOutlined, BarsOutlined} from '@ant-design/icons'
 import './video.css'
 
-const VideoList = React.memo((props) => {
+const VideoList = (props) => {
     const [videoId, setVideoId] = useState(null)
 
     const styles = []
@@ -13,27 +13,27 @@ const VideoList = React.memo((props) => {
                                                         videoId = {video.id.videoId}
                                                         onClick = {()=>{setVideoId(video.id.videoId)}} />)
     
-    console.log(props.videos)
     
     return (
     <div className="video">
         <Switch>
             <Route exact path = "/page/search" render = {()=><Redirect to = {`/page/search/result/${props.textRequest}`}/>}/>
             <Route path="/page/search/result/:textRequest?" render = {()=><VideoGrid textRequest = {props.textRequest}
-                                                                       videos={videos} />} />
+                                                                                     videos={videos}
+                                                                                     totalCount={props.totalCount} />} />
             <Route path="/page/search/watch/:videoId?" render={()=><Video videoId={videoId} />} />
         </Switch>
     </div>)
-})
+}
 
-const VideoGrid = ({videos, textRequest}) => {
+const VideoGrid = ({videos, textRequest, totalCount}) => {
 
     const [listMode, setListMode] = useState(false)
 
     return (
         <div className="video_wrapper">
             <div className="video_request">
-                <div className="video_request_item">{`Видео по запросу "${textRequest}"`}</div>
+                <div className="video_request_item">{`Видео по запросу "${textRequest}"`}<span className="video_request_count">{`${totalCount}`}</span></div>
                 <div className="video_request_item">
                     <div onClick={()=>{setListMode(false)}} className="video_request_icon">
                         <AppstoreOutlined />
