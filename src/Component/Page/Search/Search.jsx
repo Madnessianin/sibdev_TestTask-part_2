@@ -1,4 +1,4 @@
-import { Button, Input, Select } from 'antd';
+import { Button, Input, Select, Form, Row, Col, InputNumber, Slider } from 'antd';
 import React, { useEffect, useState } from 'react'
 import './Search.css'
 import VideoList from './Video/VideoList';
@@ -32,6 +32,8 @@ const MySearch = (props) => {
     );
 
     const onSubmit = (data) => {
+        console.log(data)
+        props.saveRequeest(data)
         setIsModalVisible(false)
     }
 
@@ -55,7 +57,7 @@ const MySearch = (props) => {
                    centered 
                    footer={null}>
                 
-                <ReduxRequestForm onSubmit={onSubmit}  
+                <RequestForm onSubmit={onSubmit}  
                                   onCancel={()=>{setIsModalVisible(false)}}
                                   textRequest={textRequest} />
                 
@@ -64,65 +66,81 @@ const MySearch = (props) => {
     )
 }
 
-const MyInput = (props) => {
-    return (
-        <Input {...props}  />
-    )
-}
-
-const MySelect = () => {
-    return (
-        <Select defaultValue="1">
-            <Select.Option value="1">1</Select.Option>
-            <Select.Option value="2">2</Select.Option>
-            <Select.Option value="3">3</Select.Option>
-        </Select>
-    )
-}
-
-
-
 const RequestForm = (props) => {
+    
+    const [inputValue, setInputValue] = useState(12)
+
+    const onChange = (value) => {
+        setInputValue(value)
+    }
+
+    const layout = {
+            labelCol: {
+                span: 6,
+            },
+            wrapperCol: {
+                span: 16,
+            },
+        };
+    
     return (
-        <form className="request_form" onSubmit = {props.handleSubmit}>
-            <div className="request_field">
-                <label className = "request_field_label" htmlFor = "request">Запрос</label>
-                <Field  placeholder={props.textRequest}
-                        name="request"
-                        id="request"
-                        component={MyInput}
-                        disabled />    
-            </div>
-            <div className="request_field">
-                <label className = "request_field_label" htmlFor = "name">Имя</label>
-                <Field  name="name"
-                        type="text"
-                        id="name"
-                        component={MyInput}/>    
-            </div>
-            <div className="request_field">
-                <label className = "request_field_label" htmlFor = "select">Сортировать по</label>
-                <Field  name="select"
-                        id="select"
-                        component={MySelect} />    
-            </div>
-            <div className="request_btns">
-                <div className="request_btns_item">
-                    <Button type="primary" onClick={props.onCancel}>
-                        Отмена
-                    </Button>
+        <Form {...layout} className="request_form" name="save_request" onFinish = {props.onSubmit}>
+            <Form.Item  name="request"
+                        label="Запрос"
+                        initialValue={props.textRequest}>
+                <Input disabled />
+            </Form.Item>
+            <Form.Item  name="nameRequest"
+                        label="Название"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Пожалуйста, введите название запроса!',
+                            }, ]}>
+                <Input  />
+            </Form.Item>
+            <Form.Item initialValue="1" name="sort" label="Сортировать по">
+                <Select>
+                    <Select.Option value="1">1</Select.Option>
+                    <Select.Option value="2">2</Select.Option>
+                    <Select.Option value="3">3</Select.Option>
+                </Select>
+            </Form.Item>
+            <Form.Item name="max_result" label="Максимум" initialValue={inputValue}>
+                <Row>
+                    <Col span={12}>
+                        <Slider min={1} max={50} onChange={onChange} value={inputValue} />
+                    </Col>
+                    <Col span={4}>
+                        <InputNumber
+                            min={1}
+                            max={50}
+                            style={{ marginLeft: 16 }}
+                            value={inputValue}
+                            onChange={onChange}
+                        />
+                    </Col>
+                </Row>
+            </Form.Item>
+            <Form.Item>
+                <div className="request_btns">
+                    <div className="request_btns_item">
+                        <Button type="primary" onClick={props.onCancel}>
+                            Отмена
+                        </Button>
+                    </div>
+                    <div className="request_btns_item">
+                        <Button type="primary" htmlType="submit">
+                            Сохранить
+                        </Button>
+                    </div>
                 </div>
-                <div className="request_btns_item">
-                    <Button type="primary" htmlType="submit">
-                        Сохранить
-                    </Button>
-                </div>
-            </div>
+            </Form.Item>
             
-        </form>
+        </Form>
     )
 }
-const ReduxRequestForm = reduxForm({form: 'saveRequest'})(RequestForm)
+/* const ReduxRequestForm = reduxForm({form: 'saveRequest'})(RequestForm) */
 
 export default MySearch;
 

@@ -6,7 +6,7 @@ import './video.css'
 const VideoList = (props) => {
     const [videoId, setVideoId] = useState(null)
 
-    const videos = props.videos.map(video => <VideoItem key = {video.id.videoId}
+    const videos = props.videos.map(video => <VideoItem key = {video.index}
                                                         snippet = {video.snippet}
                                                         videoId = {video.id.videoId}
                                                         onClick = {()=>{setVideoId(video.id.videoId)}} />)

@@ -10,7 +10,7 @@ const tokenGenerator = () => {
 const isAuth = localStorage.getItem('user') !== null
 
 const initialState = {
-    isAuth: isAuth
+    isAuth: false
 }
 
 

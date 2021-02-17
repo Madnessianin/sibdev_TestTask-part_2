@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import MySearch from './Search';
-import {getSearchVideo} from './../../../Redux/user-reducer'
+import {getSearchVideo, saveFavoriteRequeest} from './../../../Redux/user-reducer'
 import { getTextRequest, getTotalCount, getResult, getIsFetching } from '../../../Redux/user-selectors';
 
 class SearchConteiner extends React.Component {
@@ -11,7 +11,8 @@ class SearchConteiner extends React.Component {
                             isResult={this.props.isResult}
                             getSearchVideo={this.props.getSearchVideo}
                             totalCount={this.props.totalCount}
-                            isFetching={this.props.isFetching} />
+                            isFetching={this.props.isFetching}
+                            saveRequeest={this.props.saveFavoriteRequeest} />
     }
 
 }
@@ -27,7 +28,8 @@ let mapStateToProps = (state) =>{
 
 
 let mapDispatchToProps =  {
-    getSearchVideo
+    getSearchVideo,
+    saveFavoriteRequeest
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchConteiner);
