@@ -2,7 +2,7 @@
 
 import { YouTubeAPI } from '../Api/api'
 import dataUsers from './../JSON/dataUsers.json'
-import { getUserName } from './user-selectors'
+import { getUserName, getFavoritesRequest } from './user-selectors'
 
 
 const SET_SEARCH_VIDEO = 'Search_video/user/SET_AUTH/SET_SEARCH_VIDEO',
@@ -10,9 +10,13 @@ const SET_SEARCH_VIDEO = 'Search_video/user/SET_AUTH/SET_SEARCH_VIDEO',
       SET_TOGGLE_IS_FETCHING = 'Search_video/user/SET_TOGGLE_IS_FETCHING',
       SAVE_REQUEST = 'Search_video/user/SAVE_REQUEST'
 
+const login = localStorage.getItem(`${localStorage.getItem('user')}`)
+
+const favoritesRequest = JSON.parse(localStorage.getItem(login))
+
 const initialState = {
-    userName: null,
-    favoritesRequest: [],
+    userName: login,
+    favoritesRequest: favoritesRequest,
     resultRequest: [],
     request: null,
     count: null ,
@@ -77,7 +81,10 @@ export const getSearchVideo = (textRequest) => async (dispatch) => {
 export const saveFavoriteRequeest = (data) => async (dispatch, getState) => {
     dispatch(setFavoriteRequest(data))
     let state = getState()
-    /* localStorage.setItem(`${getUserName(state)}`, ) */
+    let name = getUserName(state)
+    let favoritesRequest = getFavoritesRequest(state)
+        
+    localStorage.setItem(`${name}`, JSON.stringify(favoritesRequest))
 }
 
 

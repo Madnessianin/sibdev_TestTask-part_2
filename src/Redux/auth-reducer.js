@@ -10,7 +10,7 @@ const tokenGenerator = () => {
 const isAuth = localStorage.getItem('user') !== null
 
 const initialState = {
-    isAuth: false
+    isAuth: isAuth
 }
 
 
@@ -41,13 +41,15 @@ export const login = (data) => (dispatch) => {
             dispatch(setAuth(true))
             dispatch(setUserName(data.login))
             let token = tokenGenerator()
-            localStorage.setItem(`${data.login}`, token)               
+            localStorage.setItem('user', token) 
+            localStorage.setItem(token, data.login)              
         }
     })
 }
 
 export const logout = () => (dispatch) => {
     dispatch(setAuth(false))
+    localStorage.removeItem(localStorage.getItem('user'))
     localStorage.removeItem('user')
 }
 

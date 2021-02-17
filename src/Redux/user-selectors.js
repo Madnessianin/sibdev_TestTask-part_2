@@ -18,3 +18,6 @@ export const getUserName = (state) => {
 export const getIsFetching = (state) => {
     return state.user.isFetching
 }
+export const getFavoritesRequest = (state) => {
+    return state.user.favoritesRequest
+}
