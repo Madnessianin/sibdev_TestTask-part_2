@@ -16,11 +16,22 @@
 .video_inner_list {
     display: grid;
     grid-template-columns: 80%;
-    grid-template-rows: repeat(12, 500px);
+    grid-template-rows: repeat(12, 600px);
     position: relative;
     top: 0;
     left: 10%;
 }
+
+.video_img {
+    width: 100%;
+}
+.video_inner_list .video_img {
+    max-height: 500px;
+}
+.video_inner_grid .video_img {
+    max-height: 180px;
+}
+
 .video_item {
     cursor: pointer;
     height: 100%;
@@ -34,10 +45,6 @@
     font-weight: 500;
     line-height: 16px;
     color: #000;
-}
-.video_img {
-    width: 100%;
-    max-height: 200px;
 }
 
 .video_chanelTitle {
