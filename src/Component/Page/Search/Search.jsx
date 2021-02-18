@@ -32,11 +32,9 @@ const MySearch = (props) => {
     );
 
     const onSubmit = (data) => {
-        props.saveRequeest(data)
+        props.saveRequest(data)
         setIsModalVisible(false)
     }
-
-   
 
     return (
         <div className="search">
@@ -54,8 +52,11 @@ const MySearch = (props) => {
                                       totalCount={props.totalCount} />
             : null}
             <ModalForm onSubmit={onSubmit}
+                       title={"Сохранить "}
                        textRequest={textRequest}
-                       visibleMode={isModalVisible} />
+                       visibleMode={isModalVisible}
+                       isDisabled={true}
+                       initialValue={{}} />
         </div>
     )
 }

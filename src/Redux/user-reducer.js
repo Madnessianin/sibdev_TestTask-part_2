@@ -1,18 +1,27 @@
-
-
 import { YouTubeAPI } from '../Api/api'
-import dataUsers from './../JSON/dataUsers.json'
+
 import { getUserName, getFavoritesRequest } from './user-selectors'
 
 
 const SET_SEARCH_VIDEO = 'Search_video/user/SET_AUTH/SET_SEARCH_VIDEO',
       SET_LOGIN_NAME = 'Search_video/user/SET_AUTH/SET_LOGIN_NAME',
       SET_TOGGLE_IS_FETCHING = 'Search_video/user/SET_TOGGLE_IS_FETCHING',
-      SAVE_REQUEST = 'Search_video/user/SAVE_REQUEST'
+      SAVE_REQUEST = 'Search_video/user/SAVE_REQUEST',
+      CHANGE_REQUEST = 'Search_video/user/CHANGE_REQUEST'
 
 const login = localStorage.getItem(`${localStorage.getItem('user')}`)
 
-const favoritesRequest = JSON.parse(localStorage.getItem(login))
+let favoritesRequest = JSON.parse(localStorage.getItem(login))
+if (favoritesRequest == null) {
+    favoritesRequest = []
+}
+const saveChangeInLOcalStorage = (getState) => {
+    let state = getState()
+    let name = getUserName(state)
+    let favoritesRequest = getFavoritesRequest(state)
+        
+    localStorage.setItem(`${name}`, JSON.stringify(favoritesRequest))
+}
 
 const initialState = {
     userName: login,
@@ -52,8 +61,26 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 favoritesRequest: [
-                    ...state.favoritesRequest,
-                    action.newRequest
+                    ...state.favoritesRequest, {
+                        "id": state.favoritesRequest.length + 1,
+                        "request": action.newRequest.request,
+                        "nameRequest": action.newRequest.nameRequest,
+                        "sort": action.newRequest.sort,
+                        "max_result": action.newRequest.max_result
+                    }
+                ]
+            }
+        }
+        case CHANGE_REQUEST: {
+            return {
+                ...state,
+                favoritesRequest: [
+                    ...state.favoritesRequest.map(request => {
+                        if (request.id == action.requestId) {
+                            return action.changedRequest
+                        }
+                        return request
+                    })
                 ]
             }
         }
@@ -69,6 +96,7 @@ export const setResultSearch = (result, request, totalCount) =>({type: SET_SEARC
 export const setUserName = (userName)=> ({type: SET_LOGIN_NAME, userName})
 export const toggleIsFetching = (isFetching) => ({type: SET_TOGGLE_IS_FETCHING, isFetching})
 export const setFavoriteRequest = (newRequest) => ({type: SAVE_REQUEST, newRequest})
+export const setchangedRequest = (requestId, changedRequest) =>({type: CHANGE_REQUEST, requestId, changedRequest})
 
 /* Thunk */
 export const getSearchVideo = (textRequest) => async (dispatch) => {
@@ -78,13 +106,14 @@ export const getSearchVideo = (textRequest) => async (dispatch) => {
     dispatch(setResultSearch(response.items, textRequest, response.pageInfo.totalResults))
 }
 
-export const saveFavoriteRequeest = (data) => async (dispatch, getState) => {
+export const saveFavoriteRequest = (data) => async (dispatch, getState) => {
     dispatch(setFavoriteRequest(data))
-    let state = getState()
-    let name = getUserName(state)
-    let favoritesRequest = getFavoritesRequest(state)
-        
-    localStorage.setItem(`${name}`, JSON.stringify(favoritesRequest))
+    saveChangeInLOcalStorage(getState)
+}
+
+export const changeFavoriteRequest = (requestId, changedRequest) => async (dispatch, getState) => {
+    dispatch(setchangedRequest(requestId, changedRequest))
+    saveChangeInLOcalStorage(getState)
 }
 
 
