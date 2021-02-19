@@ -99,9 +99,9 @@ export const setFavoriteRequest = (newRequest) => ({type: SAVE_REQUEST, newReque
 export const setchangedRequest = (requestId, changedRequest) =>({type: CHANGE_REQUEST, requestId, changedRequest})
 
 /* Thunk */
-export const getSearchVideo = (textRequest) => async (dispatch) => {
+export const getSearchVideo = (textRequest, maxResults = 12, order = "viewCount") => async (dispatch) => {
     dispatch(toggleIsFetching(true))
-    let response = await YouTubeAPI.getVideo(textRequest)
+    let response = await YouTubeAPI.getVideo(textRequest, maxResults, order)
     dispatch(toggleIsFetching(false))
     dispatch(setResultSearch(response.items, textRequest, response.pageInfo.totalResults))
 }

@@ -4,16 +4,18 @@ let instance = axios.create({
     baseURL : "https://www.googleapis.com/youtube/v3",
     params : {
         part: 'snippet',
-        maxResults: 12,
-        key :  "AIzaSyDAEqOTI5TxwfORemp3higobty5cWOrWiU"
+        key :  "AIzaSyDAEqOTI5TxwfORemp3higobty5cWOrWiU",
+        type: "video"
     }
 })
 
 export const YouTubeAPI = {
-    async getVideo(requestText) {
+    async getVideo(requestText, maxResults, order) {
         let response = await instance.get(('/search'), {
             params: {
-                q: requestText
+                q: requestText,
+                maxResults: maxResults,
+                order: order
             }
         })
         return response.data

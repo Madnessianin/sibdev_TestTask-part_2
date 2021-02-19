@@ -22,7 +22,7 @@ const Favorites = (props) => {
                     <List.Item actions={[
                         <NavLink onClick={()=>{
                             setRequestValue(item)
-                            props.getSearchVideo(item.request)
+                            props.getSearchVideo(item.request, item.max_result, item.sort)
                             }} to = '/page/search'>Выполнить</NavLink>, 
                         <Button onClick={()=>{
                             setIsModalVisible(true)

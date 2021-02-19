@@ -40,11 +40,13 @@ const RequestForm = (props) => {
                             }, ]}>
                 <Input  />
             </Form.Item>
-            <Form.Item initialValue={props.initialValue.sort || "1"} name="sort" label="Сортировать по">
+            <Form.Item initialValue={props.initialValue.sort || "date"} name="sort" label="Сортировать по">
                 <Select>
-                    <Select.Option value="1">1</Select.Option>
-                    <Select.Option value="2">2</Select.Option>
-                    <Select.Option value="3">3</Select.Option>
+                    <Select.Option value="date">По дате</Select.Option>
+                    <Select.Option value="rating">По рейтингу</Select.Option>
+                    <Select.Option value="relevance">По релевантности</Select.Option>
+                    <Select.Option value="title">По алфавиту</Select.Option>
+                    <Select.Option value="viewCount">По количеству просмотров</Select.Option>
                 </Select>
             </Form.Item>
             <Form.Item name="max_result" label="Максимум" initialValue={props.initialValue.max_result || "1"}>
