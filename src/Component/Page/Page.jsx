@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Col, Layout, Menu, Row } from 'antd';
 import './page.css'
-import { NavLink, Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch} from 'react-router-dom';
 import FavoritesConteiner from './Favorutes/FavoritesConteiner';
 import SearchConteiner from './Search/SearchConteiner';
 import logo from './../../assets/img/sibdev-logo.png'
