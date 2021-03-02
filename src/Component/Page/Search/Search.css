@@ -1,19 +1,17 @@
-
 .search {
-    width: 58.1%;
+  width: 58.1%;
 }
 
 .search_title {
-    font-size: 36px;
-    font-weight: 400;
-    text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
 }
 .search_inner_suffix {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
 .preloader {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }

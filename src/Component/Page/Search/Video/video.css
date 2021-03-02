@@ -1,83 +1,83 @@
 .video {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 .video_request {
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
 }
 .video_inner_grid {
-    display: grid;
-    grid-template-columns: repeat(4, 245px);
-    grid-template-rows: repeat(auto-fill, 300px);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 245px);
+  grid-template-rows: repeat(auto-fill, 300px);
+  grid-gap: 20px;
 }
 .video_inner_list {
-    display: grid;
-    grid-template-columns: 80%;
-    grid-template-rows: repeat(12, 600px);
-    position: relative;
-    top: 0;
-    left: 10%;
+  display: grid;
+  grid-template-columns: 80%;
+  grid-template-rows: repeat(12, 600px);
+  position: relative;
+  top: 0;
+  left: 10%;
 }
 
 .video_img {
-    width: 100%;
+  width: 100%;
 }
 .video_inner_list .video_img {
-    max-height: 500px;
+  max-height: 500px;
 }
 .video_inner_grid .video_img {
-    max-height: 180px;
+  max-height: 180px;
 }
 
 .video_item {
-    cursor: pointer;
-    height: 100%;
+  cursor: pointer;
+  height: 100%;
 }
 .video_item:hover .video_title {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .video_title {
-    margin: 8px 0;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 16px;
-    color: #000;
+  margin: 8px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 16px;
+  color: #000;
 }
 
 .video_chanelTitle {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 400;
-    opacity: .6;
-    color: #000;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.6;
+  color: #000;
 }
 
 .video_play {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .video_request {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .video_request_item {
-    display: flex;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
 }
 .video_request_count {
-    margin-left: 20px;
-    opacity: .4;
-} 
+  margin-left: 20px;
+  opacity: 0.4;
+}
 .video_request_icon {
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
 }

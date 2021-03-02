@@ -1,20 +1,19 @@
 .layout {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .ant-menu {
-    display: flex;
+  display: flex;
 }
 
 .logo img {
-    max-width: 48px;
-    max-height: 48px;
+  max-width: 48px;
+  max-height: 48px;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-

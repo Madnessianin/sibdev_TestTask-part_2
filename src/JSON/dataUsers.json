@@ -1,25 +1,19 @@
 {
-    "users" : [
-        {
-            "login": "admin",
-            "pasword": "admin",
-            "requests": [
-
-            ]
-        },
-        {
-            "login": "alex",
-            "pasword": "ReactJS",
-            "requests": [
-
-            ]
-        },
-        {
-            "login": "quest",
-            "pasword": "123456789",
-            "requests": [
-
-            ]
-        }
-    ]
+  "users": [
+    {
+      "login": "admin",
+      "pasword": "admin",
+      "requests": []
+    },
+    {
+      "login": "alex",
+      "pasword": "ReactJS",
+      "requests": []
+    },
+    {
+      "login": "quest",
+      "pasword": "123456789",
+      "requests": []
+    }
+  ]
 }
